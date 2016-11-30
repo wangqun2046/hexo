@@ -1,4 +1,6 @@
-FROM node:alpine
+FROM node:boron-alpine
+
+MAINTAINER Wang Qun, <qun.wang@live.cn>
 
 WORKDIR /Hexo
 

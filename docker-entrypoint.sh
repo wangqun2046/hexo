@@ -1,4 +1,6 @@
 #!/bin/sh
+# Author: Wang Qun
+# Email: qun.wang@live.cn
 
 echo "$@" | awk -F ' ' '{print $1}' | xargs git config --global user.name
 
