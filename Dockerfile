@@ -4,7 +4,6 @@ WORKDIR /Hexo
 
 RUN \
   apk add --no-cache git openssl \
-  && npm config set registry https://registry.npm.taobao.org \
   && npm install hexo-cli -g \
   && hexo init . \
   && npm install \
