@@ -5,7 +5,7 @@ MAINTAINER Wang Qun, <qun.wang@live.cn>
 WORKDIR /Hexo
 
 RUN \
-  apk add --no-cache git openssl \
+  apk add --no-cache git openssl-client \
   && npm install hexo-cli -g \
   && hexo init . \
   && npm install \
