@@ -12,9 +12,7 @@ RUN \
   && npm install hexo-generator-sitemap --save \
   && npm install hexo-generator-feed --save \
   && npm install hexo-generator-searchdb --save \
-  && npm install hexo-deployer-git --save \
-  && npm install hexo-renderer-markdown-it --save \
-  && npm install hexo-all-minifier --save
+  && npm install hexo-deployer-git --save 
 
 VOLUME ["/Hexo/source", "/Hexo/themes", "/root/.ssh"]
 
