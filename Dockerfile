@@ -1,11 +1,11 @@
-FROM node:boron-alpine
+FROM node:alpine
 
 MAINTAINER Wang Qun, <qun.wang@live.cn>
 
 WORKDIR /Hexo
 
 RUN \
-  apk add --no-cache git openssl-client \
+  apk add --no-cache git openssh-client \
   && npm install hexo-cli -g \
   && hexo init . \
   && npm install \
