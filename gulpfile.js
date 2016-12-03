@@ -9,7 +9,6 @@ var gutil = require('gulp-util');
 var minifyInline = require('gulp-minify-inline');
 var inline = require('gulp-inline')
 var inlineimage = require('gulp-inline-image');
-var imagemin = require('gulp-imagemin');
 
 var dir = './public'
 
@@ -45,24 +44,4 @@ gulp.task('minify-js', function() {
         .pipe(gulp.dest(dir));
 });
 
-gulp.task('images-photos', function () {
-    gulp.src('./photos/*.*')
-        .pipe(imagemin({
-            progressive: true
-        }))
-        .pipe(gulp.dest('dist/images'))
-});
-
-
-gulp.task('images-public', function () {
-    gulp.src('./public/**/*.*')
-        .pipe(imagemin({
-            progressive: true
-        }))
-        .pipe(gulp.dest(dir))
-});
-
-gulp.task('default', [
-    'minify-css','minify-js','minify-html',
-    'images-photos','images-public']
-    );
+gulp.task('default', ['minify-css','minify-js','minify-html']);

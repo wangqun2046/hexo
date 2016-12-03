@@ -22,8 +22,7 @@ RUN \
   && npm install gulp-util --save \
   && npm install gulp-minify-inline --save \
   && npm install gulp-inline --save \
-  && npm install gulp-inline-image --save \
-  && npm install gulp-imagemin --save
+  && npm install gulp-inline-image --save 
 
 VOLUME ["/Hexo/source", "/Hexo/themes", "/root/.ssh"]
 
