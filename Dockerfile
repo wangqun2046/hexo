@@ -30,6 +30,7 @@ VOLUME ["/Hexo/source", "/Hexo/themes", "/root/.ssh"]
 EXPOSE 80
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY gulpfile.js /Hexo/gulpfile.js
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
