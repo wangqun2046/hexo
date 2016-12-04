@@ -9,14 +9,12 @@ var pump = require('pump')
 
 var dir = './public'
 
-gulp.task('minify-all',function(cb) {
+gulp.task('default',function(cb) {
   var opts = {
-         collapseWhitespace: true,
-         preventLineBreaks: true,
          removeComments: true,
+         collapseWhitespace: true,
          removeEmptyAttributes: true,
          removeEmptyElements: true,
-         removeOptionalTags: true,
          minifyJS: true,
          minifyCSS: true,
          minifyURLs: true,
@@ -33,5 +31,3 @@ gulp.task('minify-all',function(cb) {
     gulp.dest(dir)
   ], cb)
 })
-
-gulp.task('default', 'minify-all')
