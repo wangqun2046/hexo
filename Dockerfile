@@ -15,9 +15,10 @@ RUN \
   && npm install hexo-deployer-git --save \
   && npm install gulp -g \
   && npm install gulp --save \
-  && npm install gulp-htmlmin --save \
-  && npm install gulp-clean-css --save \
+  && npm install gulp-inline --save \
   && npm install gulp-uglify --save \
+  && npm install gulp-clean-css --save \
+  && npm install gulp-htmlmin --save \
   && npm install pump --save
 
 VOLUME ["/Hexo/source", "/Hexo/themes", "/root/.ssh"]

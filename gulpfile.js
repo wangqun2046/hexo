@@ -1,14 +1,15 @@
 // Author: Wang Qun
 // Email: qun.wang@live.cn 
 var gulp = require('gulp')
-var htmlmin = require("gulp-htmlmin")
-var cleancss = require('gulp-clean-css')
+var inline = require('gulp-inline')
 var uglify = require('gulp-uglify')
+var cleancss = require('gulp-clean-css')
+var htmlmin = require("gulp-htmlmin")
 var pump = require('pump')
 
 var dir = './public'
 
-gulp.task('minify-html',function(cb) {
+gulp.task('minify-all',function(cb) {
   var opts = {
          collapseWhitespace: true,
          preventLineBreaks: true,
@@ -22,25 +23,15 @@ gulp.task('minify-html',function(cb) {
   } // 参数详情请参考https://github.com/kangax/html-minifier
   pump([
     gulp.src('./public/**/*.html'),
+    inline({
+        base: './public/',
+        js: uglify,
+        css: cleancss,
+        disabledTypes: ['svg', 'img']
+    })
     htmlmin(opts),
     gulp.dest(dir)
   ], cb)
 })
 
-gulp.task('minify-css', function(cb) {
-  pump([
-    gulp.src('./public/**/*.css'),
-    cleancss({compatibility: 'ie8'}),
-    gulp.dest(dir)
-  ])
-})
-
-gulp.task('minify-js', function(cb) {
-    pump([
-        gulp.src('./public/**/*.js'),
-        uglify(),
-        gulp.dest(dir)
-    ], cb)
-})
-
-gulp.task('default', ['minify-css','minify-js','minify-html'])
+gulp.task('default', 'minify-all')
