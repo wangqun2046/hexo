@@ -1,47 +1,44 @@
 // Author: Wang Qun
 // Email: qun.wang@live.cn 
 var gulp = require('gulp');
-var minifycss = require('gulp-minify-css');
+var htmlmin = require("gulp-htmlmin");
+var cleancss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
-var minifyHTML = require("gulp-minify-html");
-var htmlclean = require('gulp-htmlclean');
-var gutil = require('gulp-util');
-var minifyInline = require('gulp-minify-inline');
-var inline = require('gulp-inline')
-var inlineimage = require('gulp-inline-image');
+var pump = require('pump');
 
 var dir = './public'
 
 gulp.task('minify-html',function() {
   var opts = {
+         collapseWhitespace: true,
+         preventLineBreaks: true,
          removeComments: true,
+         removeEmptyAttributes: true,
+         removeEmptyElements: true,
+         removeOptionalTags: true,
          minifyJS: true,
          minifyCSS: true,
          minifyURLs: true,
   };
   gulp.src('./public/**/*.html')
-    .pipe(inline({
-        base: './public/',
-        disabledTypes: ['svg', 'img'], 
-    }))
-    .pipe(minifyInline())
-    .pipe(minifyHTML(opts))
+    .pipe(htmlmin(opts))
     .pipe(gulp.dest(dir));
 });
 
 gulp.task('minify-css', function() {
     gulp.src('./public/**/*.css')
-        .pipe(inlineimage())
-        .pipe(minifycss())
+        .pipe(cleancss({compatibility: 'ie8'}))
         .pipe(gulp.dest(dir));
 });
 
-gulp.task('minify-js', function() {
-    gulp.src('./public/**/*.js')
-        .pipe(uglify().on('error', function(e){
-            console.log(e);
-        }))
-        .pipe(gulp.dest(dir));
+gulp.task('clean-js', function(cb) {
+    pump([
+        gulp.src('./public/**/*.js'),
+        uglify();
+        gulp.dest(dir)
+        ], 
+        cb
+    );
 });
 
-gulp.task('default', ['minify-css','minify-js','minify-html']);
+gulp.task('default', ['minify-css','clean-js','minify-html']);
