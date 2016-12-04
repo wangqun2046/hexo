@@ -28,7 +28,7 @@ gulp.task('minify-all',function(cb) {
         js: uglify,
         css: cleancss,
         disabledTypes: ['svg', 'img']
-    })
+    }),
     htmlmin(opts),
     gulp.dest(dir)
   ], cb)
