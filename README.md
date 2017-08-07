@@ -27,7 +27,7 @@ For `hexo server`, you should construct a container like this:
 
 ```shell
 docker run -p ${your host port}:80 --name hexo-server -d \
-	-v /Users/wangqun/.ssh:/root/.ssh \
+	-v ${user home}/.ssh:/root/.ssh \
 	-v ${your hexo log source dir}:/Hexo/source \
 	-v ${your hexo log themes dir}:/Hexo/themes \
 	-v ${_config.yml path in your host}:/Hexo/_config.yml \
@@ -40,7 +40,7 @@ For `hexo deploy`, you should construct a container like this:
 
 ```shell
 docker run -p  --name hexo-deploy -d \
-	-v /Users/wangqun/.ssh:/root/.ssh \
+	-v ${user home}/.ssh:/root/.ssh \
 	-v ${your hexo log source dir}:/Hexo/source \
 	-v ${your hexo log themes dir}:/Hexo/themes \
 	-v ${_config.yml path}:/Hexo/_config.yml \
