@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:lts-alpine
 
 MAINTAINER Wang Qun, <qun.wang@live.cn>
 
